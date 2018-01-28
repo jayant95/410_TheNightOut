@@ -4,10 +4,12 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
 	public float moveSpeed;
+	private float intoxicationLevel;
 
 	// Use this for initialization
 	void Start () {
 		moveSpeed = 3.0f;
+		intoxicationLevel = 0.0f;
 	}
 	
 	// Update is called once per frame
@@ -24,6 +26,22 @@ public class Player : MonoBehaviour {
 		}
 		if (Input.GetKey (KeyCode.DownArrow)) {
 			transform.position += Vector3.down * moveSpeed * Time.deltaTime;
+		}
+			
+		drainIntoxication (0.01f);
+	}
+
+	void drainIntoxication(float factor) {
+		if (intoxicationLevel > 0) {
+			intoxicationLevel = intoxicationLevel - (1 * factor);
+			Debug.Log ("Intoxication Level: " + intoxicationLevel);
+		}
+	}
+
+	void OnTriggerEnter2D(Collider2D other) {
+		if (other.name == "Alcohol") {
+			Destroy (other.gameObject);
+			intoxicationLevel += 20;
 		}
 	}
 	
