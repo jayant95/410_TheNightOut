@@ -4,7 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
 	public float moveSpeed;
-	private float intoxicationLevel;
+	public float intoxicationLevel;
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
 	void Update () {
 		
 		movePlayer ();
-		drainIntoxication (0.01f);
+		drainIntoxication (0.05f);
 	}
 
 
@@ -33,15 +33,19 @@ public class Player : MonoBehaviour {
 		//drunkMovement ();
 
 		if (Input.GetKey (KeyCode.LeftArrow)) {
+			//drunkMovement ();
 			transform.position += Vector3.left * moveSpeed * Time.deltaTime;
 		}
 		if (Input.GetKey (KeyCode.RightArrow)) {
+			//drunkMovement ();
 			transform.position += Vector3.right * moveSpeed * Time.deltaTime;
 		}
 		if (Input.GetKey (KeyCode.UpArrow)) {
+			//drunkMovement ();
 			transform.position += Vector3.up * moveSpeed * Time.deltaTime;
 		}
 		if (Input.GetKey (KeyCode.DownArrow)) {
+			//drunkMovement ();
 			transform.position += Vector3.down * moveSpeed * Time.deltaTime;
 		}
 	}
@@ -49,7 +53,7 @@ public class Player : MonoBehaviour {
 	void drainIntoxication(float factor) {
 		if (intoxicationLevel > 0) {
 			intoxicationLevel = intoxicationLevel - (1 * factor);
-			Debug.Log ("Intoxication Level: " + intoxicationLevel);
+			//Debug.Log ("Intoxication Level: " + intoxicationLevel);
 		}
 	}
 
