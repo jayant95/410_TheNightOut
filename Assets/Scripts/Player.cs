@@ -15,6 +15,23 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+		movePlayer ();
+		drainIntoxication (0.01f);
+	}
+
+
+	void drunkMovement() {
+
+		float factor = (100 - intoxicationLevel) / 100;
+		moveSpeed = moveSpeed * factor;
+		Debug.Log (moveSpeed);
+
+	}
+
+	void movePlayer() {
+
+		//drunkMovement ();
+
 		if (Input.GetKey (KeyCode.LeftArrow)) {
 			transform.position += Vector3.left * moveSpeed * Time.deltaTime;
 		}
@@ -27,8 +44,6 @@ public class Player : MonoBehaviour {
 		if (Input.GetKey (KeyCode.DownArrow)) {
 			transform.position += Vector3.down * moveSpeed * Time.deltaTime;
 		}
-			
-		drainIntoxication (0.01f);
 	}
 
 	void drainIntoxication(float factor) {
