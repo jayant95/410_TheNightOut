@@ -54,6 +54,8 @@ public class Player : MonoBehaviour {
 		if (intoxicationLevel > 0) {
 			intoxicationLevel = intoxicationLevel - (1 * factor);
 			//Debug.Log ("Intoxication Level: " + intoxicationLevel);
+		} else {
+			intoxicationLevel = 0;
 		}
 	}
 
@@ -61,6 +63,20 @@ public class Player : MonoBehaviour {
 		if (other.name == "Alcohol") {
 			Destroy (other.gameObject);
 			intoxicationLevel += 20;
+		}
+
+		if (other.name == "Coffee") {
+			if (intoxicationLevel >= 20) {
+				intoxicationLevel -= 20;
+				Destroy (other.gameObject);
+			} else if (intoxicationLevel > 0 && intoxicationLevel < 20) {
+				intoxicationLevel = 0;
+				Destroy (other.gameObject);
+			} else {
+				// if intoxication is already 0 then don't destroy the object
+				// tell the user that they are already have 0 intoxication
+				Debug.Log("Intoxication level is already 0!");
+			}
 		}
 	}
 	

@@ -33,7 +33,7 @@ public class DistortCamera : MonoBehaviour {
 	void shake(float intensity) {
 		//originPosition = transform.position;
 		shake_intensity = intensity;
-		shake_decay = 0.002f;
+		shake_decay = 0.005f;
 	}
 
 
