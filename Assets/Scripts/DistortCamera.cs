@@ -12,10 +12,14 @@ public class DistortCamera : MonoBehaviour {
 	private Quaternion originRotation;
 	public float shake_decay;
 	public float shake_intensity;
+	public int spinRange;
+	public int rotation;
 
 	// Use this for initialization
 	void Start () {
 		fieldOfView = 50;
+		spinRange = 0;
+		rotation = 0;
 	}
 	
 	// Update is called once per frame
@@ -23,6 +27,29 @@ public class DistortCamera : MonoBehaviour {
 		playerIntoxication = playerObject.GetComponent<Player> ().intoxicationLevel;
 		Camera.main.fieldOfView = 50 - (playerIntoxication/2);
 
+		spinRange = (int)(playerIntoxication);
+
+		/*
+		while (rotation < spinRange) {
+			rotation++;
+			if (rotation >= spinRange) {
+				break;
+			}
+		}
+			
+
+		if (playerIntoxication == 0) {
+			//transform.Rotate(new Vector3 (0, 0, 0));
+			transform.rotation = Quaternion.Euler (0, 0, 0);
+		} else {
+			transform.Rotate (new Vector3 (0, 0, playerIntoxication / 100));
+			//transform.rotation = Quaternion.Euler(0, 0, playerIntoxication/10);
+		}
+
+
+
+		transform.Rotate(new Vector3(0, 0, playerIntoxication) * Time.deltaTime);
+		*/
 		if (shake_intensity > 0) {
 			transform.position = transform.position + Random.insideUnitSphere * shake_intensity;
 			shake_intensity -= shake_decay;
@@ -35,7 +62,19 @@ public class DistortCamera : MonoBehaviour {
 		shake_intensity = intensity;
 		shake_decay = 0.005f;
 	}
-
+	/*
+	IEnumerator Rotate(float duration) {
+		Quaternion startRot = transform.rotation;
+		float t = 0.0f;
+		while ( t  < duration )
+		{
+			t += Time.deltaTime;
+			transform.rotation = startRot * Quaternion.AngleAxis(t / duration * 360f, Vector3.right); //or transform.right if you want it to be locally based
+			yield return null;
+		}
+		transform.rotation = startRot;
+	}
+	*/
 
 	
 }

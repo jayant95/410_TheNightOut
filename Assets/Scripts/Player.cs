@@ -5,6 +5,8 @@ public class Player : MonoBehaviour {
 
 	public float moveSpeed;
 	public float intoxicationLevel;
+	public bool itemHeld = false;
+	private GameObject pickup;
 
 	// Use this for initialization
 	void Start () {
@@ -17,6 +19,7 @@ public class Player : MonoBehaviour {
 		
 		movePlayer ();
 		drainIntoxication (0.05f);
+
 	}
 
 
@@ -78,6 +81,7 @@ public class Player : MonoBehaviour {
 				Debug.Log("Intoxication level is already 0!");
 			}
 		}
+			
 	}
 	
 }
