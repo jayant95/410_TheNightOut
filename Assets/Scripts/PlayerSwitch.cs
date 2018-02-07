@@ -15,6 +15,7 @@ public class PlayerSwitch : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player1Active = true;
+		currentPlayer = player1;
 	}
 	
 	// Update is called once per frame

@@ -12,7 +12,7 @@ public class CameraFollow : MonoBehaviour {
 	public float smoothingTimer_x;
 
 	//GameObject player
-	public GameObject player;
+//	public GameObject player;
 	public GameObject currentPlayer;
 	//bound the camera: make boundaries
 	public bool bounds;
@@ -27,15 +27,16 @@ public class CameraFollow : MonoBehaviour {
 	}
 
 	void Update() {
-		player = currentPlayer.GetComponent<PlayerSwitch> ().currentPlayer;
+		//player = currentPlayer.GetComponent<PlayerSwitch> ().currentPlayer;
 	}
 
 	//smoothing the camera
 	void FixedUpdate () {
+		//player = currentPlayer.GetComponent<PlayerSwitch> ().currentPlayer;
 
 		//smooth the x and y positions
-		float posX = Mathf.SmoothDamp (transform.position.x, player.transform.position.x, ref velocity.x, smoothingTimer_x);
-		float posY = Mathf.SmoothDamp (transform.position.y, player.transform.position.y, ref velocity.y, smoothingTimer_y);
+		float posX = Mathf.SmoothDamp (transform.position.x, currentPlayer.GetComponent<PlayerSwitch> ().currentPlayer.transform.position.x, ref velocity.x, smoothingTimer_x);
+		float posY = Mathf.SmoothDamp (transform.position.y, currentPlayer.GetComponent<PlayerSwitch> ().currentPlayer.transform.position.y, ref velocity.y, smoothingTimer_y);
 
 		//set the position of the camera's X and Y axises
 		transform.position = new Vector3 (posX, posY, transform.position.z);

@@ -8,10 +8,12 @@ public class Player : MonoBehaviour {
 	public bool itemHeld = false;
 	private GameObject pickup;
 
+
 	// Use this for initialization
 	void Start () {
 		moveSpeed = 3.0f;
 		intoxicationLevel = 0.0f;
+
 	}
 	
 	// Update is called once per frame
@@ -20,6 +22,8 @@ public class Player : MonoBehaviour {
 		if (gameObject.GetComponent<Rigidbody2D> ().IsSleeping()) {
 			gameObject.GetComponent<Rigidbody2D> ().WakeUp ();
 		}
+			
+
 
 		movePlayer ();
 		drainIntoxication (0.05f);
