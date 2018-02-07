@@ -16,7 +16,11 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+		if (gameObject.GetComponent<Rigidbody2D> ().IsSleeping()) {
+			gameObject.GetComponent<Rigidbody2D> ().WakeUp ();
+		}
+
 		movePlayer ();
 		drainIntoxication (0.05f);
 

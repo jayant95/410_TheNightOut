@@ -7,7 +7,7 @@ public class DistortCamera : MonoBehaviour {
 	public float playerIntoxication;
 	public int fieldOfView;
 	public GameObject playerObject;
-
+	public GameObject currentPlayer;
 	private Vector3 originPosition;
 	private Quaternion originRotation;
 	public float shake_decay;
@@ -24,6 +24,7 @@ public class DistortCamera : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		playerObject = currentPlayer.GetComponent<PlayerSwitch> ().currentPlayer;
 		playerIntoxication = playerObject.GetComponent<Player> ().intoxicationLevel;
 		Camera.main.fieldOfView = 50 - (playerIntoxication/2);
 
@@ -54,7 +55,7 @@ public class DistortCamera : MonoBehaviour {
 			transform.position = transform.position + Random.insideUnitSphere * shake_intensity;
 			shake_intensity -= shake_decay;
 		}
-		shake (playerIntoxication/500.0f);
+		shake (playerIntoxication/100.0f);
 	}
 
 	void shake(float intensity) {

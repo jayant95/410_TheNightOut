@@ -12,8 +12,8 @@ public class CameraFollow : MonoBehaviour {
 	public float smoothingTimer_x;
 
 	//GameObject player
-	private GameObject player;
-
+	public GameObject player;
+	public GameObject currentPlayer;
 	//bound the camera: make boundaries
 	public bool bounds;
 
@@ -22,9 +22,12 @@ public class CameraFollow : MonoBehaviour {
 	public Vector3 maxCameraPos;
 
 
+
 	void Start () {
-		//find the player object
-		player = GameObject.FindGameObjectWithTag ("Player");
+	}
+
+	void Update() {
+		player = currentPlayer.GetComponent<PlayerSwitch> ().currentPlayer;
 	}
 
 	//smoothing the camera
