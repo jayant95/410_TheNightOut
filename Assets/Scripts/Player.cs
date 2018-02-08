@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
 	public float intoxicationLevel;
 	public bool itemHeld = false;
 	private GameObject pickup;
+	public Animator anim;
 
 
 	// Use this for initialization
@@ -23,8 +24,6 @@ public class Player : MonoBehaviour {
 			gameObject.GetComponent<Rigidbody2D> ().WakeUp ();
 		}
 			
-
-
 		movePlayer ();
 		drainIntoxication (0.05f);
 
@@ -47,10 +46,15 @@ public class Player : MonoBehaviour {
 			//drunkMovement ();
 			transform.position += Vector3.left * moveSpeed * Time.deltaTime;
 		}
+
 		if (Input.GetKey (KeyCode.RightArrow)) {
 			//drunkMovement ();
 			transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+			//anim.SetBool ("WalkRight", true);
+		} else {
+			//anim.SetBool ("WalkRight", false);
 		}
+
 		if (Input.GetKey (KeyCode.UpArrow)) {
 			//drunkMovement ();
 			transform.position += Vector3.up * moveSpeed * Time.deltaTime;
