@@ -1,7 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{B65AE92C-6621-5B7C-81C9-1B3C340BA5DA}") = "410_TheNightOut", "Assembly-CSharp.csproj", "{1D34258E-1A05-CAE6-C9C2-B88FF4C99B47}"
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "410_TheNightOut", "410_TheNightOut.csproj", "{29560BCC-6A05-3DE7-3016-182E8C9059CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +9,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1D34258E-1A05-CAE6-C9C2-B88FF4C99B47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D34258E-1A05-CAE6-C9C2-B88FF4C99B47}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D34258E-1A05-CAE6-C9C2-B88FF4C99B47}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D34258E-1A05-CAE6-C9C2-B88FF4C99B47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29560BCC-6A05-3DE7-3016-182E8C9059CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29560BCC-6A05-3DE7-3016-182E8C9059CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29560BCC-6A05-3DE7-3016-182E8C9059CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29560BCC-6A05-3DE7-3016-182E8C9059CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal
