@@ -7,15 +7,20 @@ public class PlayerSwitch : MonoBehaviour {
 	public GameObject player2;
 	public Transform player1Trans;
 	public Transform player2Trans;
+    public Animator player1Anim;
+    public Animator player2Anim;
 
 	private bool player1Active = false;
 	private bool player2Active = false;
 	[HideInInspector] public GameObject currentPlayer;
 	[HideInInspector] public Transform currentTransform;
+    [HideInInspector] public Animator currentAnimation;
+
 	// Use this for initialization
 	void Start () {
 		player1Active = true;
 		currentPlayer = player1;
+        currentAnimation = player1Anim;
 	}
 	
 	// Update is called once per frame
@@ -36,6 +41,7 @@ public class PlayerSwitch : MonoBehaviour {
 			GameObject.Find ("Player2").GetComponent<Player> ().enabled = false;
 			currentPlayer = player1;
 			currentTransform = player1Trans;
+            currentAnimation = player1Anim;
 		}
 
 		if (player2Active) {
@@ -43,6 +49,7 @@ public class PlayerSwitch : MonoBehaviour {
 			GameObject.Find ("Player2").GetComponent<Player> ().enabled = true;
 			currentPlayer = player2;
 			currentTransform = player2Trans;
+            currentAnimation = player2Anim;
 		}
 	}
 }

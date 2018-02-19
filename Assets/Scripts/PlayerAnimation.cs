@@ -2,17 +2,19 @@
 using System.Collections;
 
 public class PlayerAnimation : MonoBehaviour {
-	private Animator anim;
+    // ** This script is obsolete. Animations are being done in Player.cs instead. Keep this file just in case
 
-	// Use this for initialization
-	void Start () {
-		anim = gameObject.GetComponent<Animator> ();
+	//private Animator anim;
+
+    // Use this for initialization
+    void Start () {
+		//anim = gameObject.GetComponent<Animator> ();
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+        /*
         if (Input.GetAxisRaw("Horizontal") > 0) {
             transform.eulerAngles = new Vector2(0, 0);
             anim.SetBool("Walk", true);
@@ -22,5 +24,6 @@ public class PlayerAnimation : MonoBehaviour {
         } else {
             anim.SetBool("Walk", false);
         }
+        */
 	}
 }

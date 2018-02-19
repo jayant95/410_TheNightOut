@@ -7,18 +7,20 @@ public class Player : MonoBehaviour {
 	public float intoxicationLevel;
 	public bool itemHeld = false;
 	private GameObject pickup;
-	public Animator anim;
+    public GameObject currentPlayer;
+    private Animator currentAnimation;
 
 
 	// Use this for initialization
 	void Start () {
 		moveSpeed = 3.0f;
 		intoxicationLevel = 0.0f;
+        currentAnimation = currentPlayer.GetComponent<PlayerSwitch>().currentAnimation;
+    }
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
+        currentAnimation = currentPlayer.GetComponent<PlayerSwitch>().currentAnimation;
 
 		if (gameObject.GetComponent<Rigidbody2D> ().IsSleeping()) {
 			gameObject.GetComponent<Rigidbody2D> ().WakeUp ();
@@ -40,20 +42,42 @@ public class Player : MonoBehaviour {
 
 	void movePlayer() {
 
-		//drunkMovement ();
+        //drunkMovement ();
 
-		if (Input.GetKey (KeyCode.LeftArrow)) {
+        if (Input.GetAxisRaw("Horizontal") > 0)
+        {
+            transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+            transform.eulerAngles = new Vector2(0, 0);
+            currentAnimation.SetBool("Walk", true);
+        }
+        else if (Input.GetAxisRaw("Horizontal") < 0)
+        {
+            transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+            transform.eulerAngles = new Vector2(0, 180);
+            currentAnimation.SetBool("Walk", true);
+        }
+        else
+        {
+            currentAnimation.SetBool("Walk", false);
+        }
+
+        /*
+        if (Input.GetKey (KeyCode.LeftArrow)) {
 			//drunkMovement ();
 			transform.position += Vector3.left * moveSpeed * Time.deltaTime;
-		}
+            anim.SetBool("Walk", true);
+        }
 
 		if (Input.GetKey (KeyCode.RightArrow)) {
 			//drunkMovement ();
 			transform.position += Vector3.right * moveSpeed * Time.deltaTime;
-			//anim.SetBool ("WalkRight", true);
-		} else {
+            anim.SetBool("Walk", true);
+            //anim.SetBool ("WalkRight", true);
+        } else {
 			//anim.SetBool ("WalkRight", false);
 		}
+
+    */
 
 		if (Input.GetKey (KeyCode.UpArrow)) {
 			//drunkMovement ();

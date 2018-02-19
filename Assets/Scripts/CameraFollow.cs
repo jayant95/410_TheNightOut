@@ -41,7 +41,6 @@ public class CameraFollow : MonoBehaviour {
 		//set the position of the camera's X and Y axises
 		transform.position = new Vector3 (posX, posY, transform.position.z);
 
-
 		//check the bounds of the camera
 		if (bounds) {
 			//clamp the position of the camera to the min and max values
