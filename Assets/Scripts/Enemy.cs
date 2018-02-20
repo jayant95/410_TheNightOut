@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
     private Color color;
+    public int maxHealth = 100;
+    public int curHealth = 100;
     public float minimum = 0.0f;
     public float maximum = 1f;
     public float duration = 5.0f;
@@ -22,11 +24,22 @@ public class Enemy : MonoBehaviour {
         if (isFromHallucination) {
             fadeIn();
         }
+
+        if (curHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
 
     void fadeIn() {
         float t = (Time.time - startTime) / duration;
         this.GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, Mathf.SmoothStep(minimum, maximum, t));
+    }
+
+    public void Damage(int damage)
+    {
+        curHealth -= damage;
+        gameObject.GetComponent<Animation>().Play("Player_RedFlash");
     }
 }
