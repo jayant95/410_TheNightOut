@@ -9,10 +9,12 @@ public class Player : MonoBehaviour {
 	private GameObject pickup;
     public GameObject currentPlayer;
     private Animator currentAnimation;
+    private float speedReducer;
 
 
 	// Use this for initialization
 	void Start () {
+        speedReducer = 1.0f;
 		moveSpeed = 3.0f;
 		intoxicationLevel = 0.0f;
         currentAnimation = currentPlayer.GetComponent<PlayerSwitch>().currentAnimation;
@@ -42,17 +44,18 @@ public class Player : MonoBehaviour {
 
 	void movePlayer() {
 
-        //drunkMovement ();
+        ///drunkMovement ();
+        speedReducer = 1.0f - (intoxicationLevel / 100.0f);
 
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
-            transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+            transform.position += Vector3.right * moveSpeed * speedReducer *  Time.deltaTime;
             transform.eulerAngles = new Vector2(0, 0);
             currentAnimation.SetBool("Walk", true);
         }
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
-            transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+            transform.position += Vector3.left * moveSpeed * speedReducer * Time.deltaTime;
             transform.eulerAngles = new Vector2(0, 180);
             currentAnimation.SetBool("Walk", true);
         }
@@ -81,18 +84,18 @@ public class Player : MonoBehaviour {
 
 		if (Input.GetKey (KeyCode.UpArrow)) {
 			//drunkMovement ();
-			transform.position += Vector3.up * moveSpeed * Time.deltaTime;
+			transform.position += Vector3.up * moveSpeed * speedReducer * Time.deltaTime;
 		}
 		if (Input.GetKey (KeyCode.DownArrow)) {
 			//drunkMovement ();
-			transform.position += Vector3.down * moveSpeed * Time.deltaTime;
+			transform.position += Vector3.down * moveSpeed * speedReducer * Time.deltaTime;
 		}
 	}
 
 	void drainIntoxication(float factor) {
 		if (intoxicationLevel > 0) {
 			intoxicationLevel = intoxicationLevel - (1 * factor);
-			//Debug.Log ("Intoxication Level: " + intoxicationLevel);
+			Debug.Log ("Intoxication Level: " + intoxicationLevel);
 		} else {
 			intoxicationLevel = 0;
 		}

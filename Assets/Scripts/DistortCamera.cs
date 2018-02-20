@@ -55,7 +55,7 @@ public class DistortCamera : MonoBehaviour {
 			transform.position = transform.position + Random.insideUnitSphere * shake_intensity;
 			shake_intensity -= shake_decay;
 		}
-		shake (playerIntoxication/100.0f);
+		shake (playerIntoxication/1000.0f);
 	}
 
 	void shake(float intensity) {
