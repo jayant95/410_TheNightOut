@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour {
     public int curHealth = 100;
     public float minimum = 0.0f;
     public float maximum = 1f;
-    public float duration = 5.0f;
+    public float duration = 6.0f;
     private float startTime;
     public bool isFromHallucination = false;
 
@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour {
     void Start () {
         startTime = Time.time;
         color = this.GetComponent<SpriteRenderer>().color;
+        this.GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, 0);
     }
 
     // Update is called once per frame
