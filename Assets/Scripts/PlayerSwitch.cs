@@ -21,6 +21,7 @@ public class PlayerSwitch : MonoBehaviour {
 		player1Active = true;
 		currentPlayer = player1;
         currentAnimation = player1Anim;
+        currentTransform = player1Trans;
 	}
 	
 	// Update is called once per frame

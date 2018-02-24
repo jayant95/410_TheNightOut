@@ -289,6 +289,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\attackTrigger.cs" />
+    <Compile Include="Assets\Scripts\AttractScript.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\DistortCamera.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
