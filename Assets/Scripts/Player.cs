@@ -95,7 +95,7 @@ public class Player : MonoBehaviour {
 	void drainIntoxication(float factor) {
 		if (intoxicationLevel > 0) {
 			intoxicationLevel = intoxicationLevel - (1 * factor);
-			Debug.Log ("Intoxication Level: " + intoxicationLevel);
+		//	Debug.Log ("Intoxication Level: " + intoxicationLevel);
 		} else {
 			intoxicationLevel = 0;
 		}
