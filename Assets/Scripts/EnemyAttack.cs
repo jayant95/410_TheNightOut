@@ -52,7 +52,7 @@ public class EnemyAttack : MonoBehaviour {
             Attack();
         }
 
-        if playerHealth.currentHealth <= 0)
+        if (playerHealth.currentHealth <= 0)
         {
             anim.SetTrigger("PlayerDead");
         }

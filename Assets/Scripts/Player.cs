@@ -27,7 +27,7 @@ public class Player : MonoBehaviour {
 		if (gameObject.GetComponent<Rigidbody2D> ().IsSleeping()) {
 			gameObject.GetComponent<Rigidbody2D> ().WakeUp ();
 		}
-			
+
 		movePlayer ();
 		drainIntoxication (0.05f);
 
@@ -120,7 +120,7 @@ public class Player : MonoBehaviour {
 				Debug.Log("Intoxication level is already 0!");
 			}
 		}
-			
+
 	}
-	
+
 }
