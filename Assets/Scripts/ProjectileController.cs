@@ -5,12 +5,9 @@ using UnityEngine;
 public class ProjectileController : MonoBehaviour {
 
 	private int lifeTimer = 0;
-	public GameObject currentPlayer;
-	private GameObject playerObject;
 
 	// Use this for initialization
 	void Start () {
-		playerObject = currentPlayer.GetComponent<PlayerSwitch> ().currentPlayer;
 		this.gameObject.GetComponent<Rigidbody2D> ().velocity = new Vector2 (Random.Range(-5.0f, 5.0f), Random.Range(2.0f, 2.0f));
 
 	}

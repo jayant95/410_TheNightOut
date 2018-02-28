@@ -10,6 +10,9 @@ public class Player : MonoBehaviour {
     public GameObject currentPlayer;
     private Animator currentAnimation;
     private float speedReducer;
+	private bool isBoost = false;
+	private float boostMultiplier = 1.0f;
+	private int boostTimer;
 
 
 	// Use this for initialization
@@ -17,6 +20,7 @@ public class Player : MonoBehaviour {
         speedReducer = 1.0f;
 		moveSpeed = 3.0f;
 		intoxicationLevel = 0.0f;
+		boostTimer = 90 * (int)(speedReducer * 1.8f);
         currentAnimation = currentPlayer.GetComponent<PlayerSwitch>().currentAnimation;
     }
 
@@ -49,13 +53,13 @@ public class Player : MonoBehaviour {
 
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
-            transform.position += Vector3.right * moveSpeed * speedReducer *  Time.deltaTime;
+			transform.position += Vector3.right * moveSpeed * speedReducer * boostMultiplier * Time.deltaTime;
             transform.eulerAngles = new Vector2(0, 0);
             currentAnimation.SetBool("Walk", true);
         }
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
-            transform.position += Vector3.left * moveSpeed * speedReducer * Time.deltaTime;
+			transform.position += Vector3.left * moveSpeed * speedReducer * boostMultiplier * Time.deltaTime;
             transform.eulerAngles = new Vector2(0, 180);
             currentAnimation.SetBool("Walk", true);
         }
@@ -84,11 +88,24 @@ public class Player : MonoBehaviour {
 
 		if (Input.GetKey (KeyCode.UpArrow)) {
 			//drunkMovement ();
-			transform.position += Vector3.up * moveSpeed * speedReducer * Time.deltaTime;
+			transform.position += Vector3.up * moveSpeed * speedReducer * boostMultiplier * Time.deltaTime;
 		}
 		if (Input.GetKey (KeyCode.DownArrow)) {
 			//drunkMovement ();
-			transform.position += Vector3.down * moveSpeed * speedReducer * Time.deltaTime;
+			transform.position += Vector3.down * moveSpeed * speedReducer * boostMultiplier * Time.deltaTime;
+		}
+
+
+		if (isBoost) {
+			boostMultiplier = 2.0f;
+			boostTimer--;
+			Debug.Log (boostTimer);
+		}
+
+		if (boostTimer <= 0) {
+			isBoost = false;
+			boostMultiplier = 1.0f;
+			boostTimer = 90 * (int)(speedReducer * 1.8f);
 		}
 	}
 
@@ -108,16 +125,16 @@ public class Player : MonoBehaviour {
 		}
 
 		if (other.name == "Coffee") {
+			isBoost = true;
+			Destroy (other.gameObject);
 			if (intoxicationLevel >= 20) {
 				intoxicationLevel -= 20;
-				Destroy (other.gameObject);
 			} else if (intoxicationLevel > 0 && intoxicationLevel < 20) {
 				intoxicationLevel = 0;
-				Destroy (other.gameObject);
 			} else {
 				// if intoxication is already 0 then don't destroy the object
 				// tell the user that they are already have 0 intoxication
-				Debug.Log("Intoxication level is already 0!");
+				// Debug.Log("Intoxication level is already 0!");
 			}
 		}
 
