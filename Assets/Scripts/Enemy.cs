@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour {
 
     private Color color;
     public int maxHealth = 100;
-    public int curHealth = 100;
+    public int curHealth;
     public float minimum = 0.0f;
     public float maximum = 1f;
     public float duration = 6.0f;
@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour {
         startTime = Time.time;
         color = this.GetComponent<SpriteRenderer>().color;
         this.GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, 0);
+        curHealth = maxHealth;
     }
 
     // Update is called once per frame

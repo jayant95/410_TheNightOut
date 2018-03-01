@@ -9,13 +9,13 @@ public class attackTrigger : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collision)
     {
       
-        if(collision.name =="Cop")
-        //  if (collision.isTrigger != true && collision.CompareTag("Enemy"))
-        {
-            // collision.SendMessageUpwards("Damage", damage);
-            // Debug.Log("damage", gameObject);
 
-            Destroy(collision.gameObject);
+          if (collision.isTrigger != true && collision.CompareTag("Enemy"))
+        {
+            collision.SendMessageUpwards("Damage", damage);
+             Debug.Log("damage", gameObject);
+
+    
         }
 
        else if (collision.isTrigger != true && collision.CompareTag("Cop"))

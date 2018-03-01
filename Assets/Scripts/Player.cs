@@ -96,7 +96,8 @@ public class Player : MonoBehaviour {
 		}
 
 
-		if (isBoost) {
+
+        if (isBoost) {
 			boostMultiplier = 2.0f;
 			boostTimer--;
 			Debug.Log (boostTimer);
