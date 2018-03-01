@@ -13,10 +13,10 @@ public class playerAttack1 : MonoBehaviour {
 
     private Animator anim;
 
-   void Start()
+   void Awake()
     {
        anim = gameObject.GetComponent<Animator>();
-        attackTrigger.enabled = false;
+        attackTrigger.enabled = true;
     }
 
 
@@ -41,8 +41,7 @@ public class playerAttack1 : MonoBehaviour {
 
             else
             {
-                attacking = false;
-                attackTrigger.enabled = false;
+         
             }
         }
 

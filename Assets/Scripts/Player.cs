@@ -124,7 +124,14 @@ public class Player : MonoBehaviour {
 			intoxicationLevel += 20;
 		}
 
-		if (other.name == "Coffee") {
+        if (other.name == "POPO")
+        {
+            Destroy(other.gameObject);
+            intoxicationLevel += 20;
+        }
+
+
+        if (other.name == "Coffee") {
 			isBoost = true;
 			Destroy (other.gameObject);
 			if (intoxicationLevel >= 20) {

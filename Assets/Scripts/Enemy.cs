@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour {
 
         if (curHealth <= 0)
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 
@@ -41,6 +41,6 @@ public class Enemy : MonoBehaviour {
     public void Damage(int damage)
     {
         curHealth -= damage;
-        gameObject.GetComponent<Animation>().Play("Player_RedFlash");
+        Debug.Log("damage");
     }
 }
