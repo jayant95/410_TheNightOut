@@ -8,9 +8,15 @@ public class attackTrigger : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+		/*
+		if (Input.GetAxisRaw ("Horizontal") > 0) {
+			transform.eulerAngles = new Vector2(0, 0);
+		} else if (Input.GetAxisRaw("Horizontal") < 0) {
+			transform.eulerAngles = new Vector2(0, 90);
+		}
+		*/
       
-
-          if (collision.isTrigger != true && collision.CompareTag("Enemy"))
+        if (collision.isTrigger != true && collision.CompareTag("Enemy"))
         {
             collision.SendMessageUpwards("Damage", damage);
              Debug.Log("damage", gameObject);

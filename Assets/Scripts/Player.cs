@@ -13,6 +13,7 @@ public class Player : MonoBehaviour {
 	private bool isBoost = false;
 	private float boostMultiplier = 1.0f;
 	private int boostTimer;
+	public GameObject playerAttackTrigger;
 
 
 	// Use this for initialization
@@ -55,12 +56,14 @@ public class Player : MonoBehaviour {
         {
 			transform.position += Vector3.right * moveSpeed * speedReducer * boostMultiplier * Time.deltaTime;
             transform.eulerAngles = new Vector2(0, 0);
+			playerAttackTrigger.transform.eulerAngles = new Vector2 (0, 180);
             currentAnimation.SetBool("Walk", true);
         }
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
 			transform.position += Vector3.left * moveSpeed * speedReducer * boostMultiplier * Time.deltaTime;
             transform.eulerAngles = new Vector2(0, 180);
+			playerAttackTrigger.transform.eulerAngles = new Vector2 (0, 0);
             currentAnimation.SetBool("Walk", true);
         }
         else

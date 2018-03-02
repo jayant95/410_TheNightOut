@@ -53,6 +53,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\attackTrigger.cs" />
      <Compile Include="Assets\Scripts\AttractScript.cs" />
+     <Compile Include="Assets\Scripts\Bootleg Bar\Cursor_Custom.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\DistortCamera.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
@@ -62,6 +63,7 @@
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\PlayerAnimation.cs" />
      <Compile Include="Assets\Scripts\playerAttack1.cs" />
+     <Compile Include="Assets\Scripts\playerAttackAOE.cs" />
      <Compile Include="Assets\Scripts\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\PlayerSwitch.cs" />
      <Compile Include="Assets\Scripts\PressurePad.cs" />

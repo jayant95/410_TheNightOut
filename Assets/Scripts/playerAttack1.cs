@@ -7,7 +7,7 @@ public class playerAttack1 : MonoBehaviour {
     private bool attacking = false;
 
     private float attackTimer = 0;
-    private float attackCd = 0.3f;
+    private float attackCd = 60.0f;
 
     public Collider2D attackTrigger;
 
@@ -23,7 +23,6 @@ public class playerAttack1 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
         if(Input.GetKeyDown("f") && !attacking)
         {
             attacking = true;
@@ -36,7 +35,7 @@ public class playerAttack1 : MonoBehaviour {
         {
             if(attackTimer > 0)
             {
-                attackTimer -= Time.deltaTime;
+                attackTimer--;
             }
 
             else
