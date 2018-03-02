@@ -25,6 +25,11 @@ public class Enemy : MonoBehaviour {
     void Update () {
         if (isFromHallucination) {
             fadeIn();
+
+			if (curHealth <= 0)
+			{
+				Destroy(this.gameObject);
+			}
         }
 
         if (curHealth <= 0)
