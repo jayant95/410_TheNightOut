@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     public GameObject currentPlayer;
     private Animator currentAnimation;
     private float speedReducer;
-	private bool isBoost = false;
+	[HideInInspector] public bool isBoost = false;
 	private float boostMultiplier = 1.0f;
 	private int boostTimer;
 	public GameObject playerAttackTrigger;
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour {
         speedReducer = 1.0f;
 		moveSpeed = 3.0f;
 		intoxicationLevel = 0.0f;
-		boostTimer = 90 * (int)(speedReducer * 1.8f);
+		boostTimer = 180 * (int)(speedReducer * 1.8f);
         currentAnimation = currentPlayer.GetComponent<PlayerSwitch>().currentAnimation;
     }
 
@@ -103,13 +103,13 @@ public class Player : MonoBehaviour {
         if (isBoost) {
 			boostMultiplier = 2.0f;
 			boostTimer--;
-			Debug.Log (boostTimer);
+			//Debug.Log (boostTimer);
 		}
 
 		if (boostTimer <= 0) {
 			isBoost = false;
 			boostMultiplier = 1.0f;
-			boostTimer = 90 * (int)(speedReducer * 1.8f);
+			boostTimer = 180 * (int)(speedReducer * 1.8f);
 		}
 	}
 
