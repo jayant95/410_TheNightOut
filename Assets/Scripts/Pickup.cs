@@ -17,6 +17,7 @@ public class Pickup : MonoBehaviour {
 	private bool isPlayerBoost = false;
 	private bool isThrown = false;
 	private int travelTimer = 0;
+	public bool intoxicationNeeded = false;
 
 	// Use this for initialization
 	void Start () {
@@ -32,6 +33,20 @@ public class Pickup : MonoBehaviour {
 		currentIntoxication = player.GetComponent<Player> ().intoxicationLevel;
 		isPlayerBoost = player.GetComponent<Player> ().isBoost;
 
+		if (!intoxicationNeeded || currentIntoxication > 50.0f) {
+			pickupObject ();
+			calculateTimeThrown ();
+		} else if (Input.GetKeyDown(KeyCode.Space) && currentIntoxication < 50.0f && canPickup){
+			Debug.Log ("I need to be more drunk to pick that up!");
+		}			
+
+		if (gameObject.GetComponent<Rigidbody2D> ().IsSleeping()) {
+			gameObject.GetComponent<Rigidbody2D> ().WakeUp ();
+		}
+
+	}
+
+	void pickupObject() {
 		if (Input.GetKeyDown (KeyCode.Space) && canPickup) {
 			//transform.position = gamePlayer.position;
 			transform.SetParent (gamePlayer);
@@ -40,16 +55,15 @@ public class Pickup : MonoBehaviour {
 			pickupCounter++;
 		}
 
-		if (pickupCounter > 0 && pickupCounter % 2 == 0 && Input.GetKeyDown(KeyCode.Space)) {
-			if (forPuzzle) {
-				holding = false;
-				player.GetComponent<Player> ().itemHeld = holding;
-				transform.SetParent (null);
-			} else {
+		if (pickupCounter > 0 && pickupCounter % 2 == 0 && Input.GetKeyDown(KeyCode.Space) && canPickup) {
+			holding = false;
+			player.GetComponent<Player> ().itemHeld = holding;
+			transform.SetParent (null);
+
+			if (!forPuzzle) {
 				if (isPlayerBoost) {
 					currentIntoxication = 0;
 				}
-				transform.SetParent (null);
 				isThrown = true;
 				if (Input.GetAxisRaw ("Horizontal") > 0) {
 					velocity_x = 4;
@@ -57,27 +71,21 @@ public class Pickup : MonoBehaviour {
 					velocity_x = -4;
 				}
 				gameObject.GetComponent<Rigidbody2D> ().velocity = new Vector2 (velocity_x, velocity_y * currentIntoxication);
-
-			}
-
+			} 
 		}
+	}
 
+	void calculateTimeThrown() {
 		if (isThrown) {
 			travelTimer++;
 		}
-			
+
 		if (travelTimer > 90) {
 			isThrown = false;
 			travelTimer = 0;
 			gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 
 		}
-
-
-		if (gameObject.GetComponent<Rigidbody2D> ().IsSleeping()) {
-			gameObject.GetComponent<Rigidbody2D> ().WakeUp ();
-		}
-
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
