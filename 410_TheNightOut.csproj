@@ -289,6 +289,8 @@
     <Compile Include="Assets\Scripts\DistortCamera.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\EnemyAttack.cs" />
+    <Compile Include="Assets\Scripts\GUI\barScript.cs" />
+    <Compile Include="Assets\Scripts\GUI\Stat.cs" />
     <Compile Include="Assets\Scripts\Laser.cs" />
     <Compile Include="Assets\Scripts\Pickup.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />

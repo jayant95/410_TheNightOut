@@ -1,9 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
+    [SerializeField]
+    private Stat health;
+    private Stat intoxication;
 
-	public float moveSpeed;
+
+    public Slider intoxicationSlider;
+    public float moveSpeed;
 	public float intoxicationLevel;
 	public bool itemHeld = false;
 	private GameObject pickup;
@@ -35,6 +41,7 @@ public class Player : MonoBehaviour {
 
 		movePlayer ();
 		drainIntoxication (0.05f);
+        intoxicationSlider.value = intoxicationLevel;
 
 	}
 
