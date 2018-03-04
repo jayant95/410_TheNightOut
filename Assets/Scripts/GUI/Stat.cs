@@ -6,11 +6,13 @@ using System;
 [Serializable]
 public class Stat
 {
-
+    [SerializeField]
     private barScript bar;
 
+    [SerializeField]
     private float maxVal;
 
+    [SerializeField]
     private float currentVal;
 
     public float CurrentVal
@@ -23,7 +25,7 @@ public class Stat
         set
         {
 
-            this.currentVal = value;
+            this.currentVal = Mathf.Clamp(value,0,MaxVal);
             bar.Value = currentVal;
         }
     }
@@ -32,14 +34,21 @@ public class Stat
     {
         get
         {
-            return MaxVal;
+            return maxVal;
         }
 
         set
         {
-            this.MaxVal = value;
-            bar.MaxValue = maxVal;
+            bar.MaxValue = value;
+            this.maxVal = value;
+
+       
         }
     }
-}
 
+    public void Initialize()
+    {
+        this.MaxVal = maxVal;
+        this.CurrentVal = currentVal;
+    }
+}

@@ -10,6 +10,13 @@ public class AttractScript : MonoBehaviour {
     private float moveSpeed = 0.8f;
     private int maxDistance = 10;
     private int minDistance = 5;
+	public bool isFriendly = false;
+
+	private Vector2 velocity;
+
+	//smoothing time for the camera
+	public float smoothingTimer_y;
+	public float smoothingTimer_x;
 
 	// Use this for initialization
 	void Start () {
@@ -31,15 +38,25 @@ public class AttractScript : MonoBehaviour {
 		//transform.rotation = Quaternion.Euler (0, 0, arcTan * Mathf.Rad2Deg);
 		//transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.Euler (0, 0, (arcTan * Mathf.Rad2Deg) - 90.0f), Time.deltaTime * 0.8f);
 
+		if (isFriendly) {
+			float posX = Mathf.SmoothDamp (transform.position.x, currentPlayer.GetComponent<PlayerSwitch> ().currentPlayer.transform.position.x, ref velocity.x, smoothingTimer_x);
+			float posY = Mathf.SmoothDamp (transform.position.y, currentPlayer.GetComponent<PlayerSwitch> ().currentPlayer.transform.position.y, ref velocity.y, smoothingTimer_y);
+			if (Vector2.Distance(transform.position, playerTransform.position) >= minDistance) {
+				//transform.position = Vector2.Lerp (transform.position, playerObject.transform.position, Time.deltaTime * moveSpeed);
+				transform.position = new Vector3 (posX, posY, transform.position.z);
+			}
 
+		} else {
+			if (Vector2.Distance(transform.position, playerTransform.position) <= minDistance) {
+				// transform.Translate(new Vector3(moveSpeed * Time.deltaTime, 0, 0));
+				transform.position = Vector2.Lerp (transform.position, playerObject.transform.position, Time.deltaTime * moveSpeed);
+				if (Vector2.Distance(transform.position, playerTransform.position) <= maxDistance) {
+					// call any functon, shoot or anything
+				}
+			}
+		}
 
-        if (Vector2.Distance(transform.position, playerTransform.position) <= minDistance) {
-           // transform.Translate(new Vector3(moveSpeed * Time.deltaTime, 0, 0));
-			transform.position = Vector2.Lerp (transform.position, playerObject.transform.position, Time.deltaTime * moveSpeed);
-			if (Vector2.Distance(transform.position, playerTransform.position) <= maxDistance) {
-                // call any functon, shoot or anything
-            }
-        }
+ 
         
 	}
 }

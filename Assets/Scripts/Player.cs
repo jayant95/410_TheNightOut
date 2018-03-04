@@ -5,10 +5,12 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour {
     [SerializeField]
     private Stat health;
+
+    [SerializeField]
     private Stat intoxication;
 
 
-    public Slider intoxicationSlider;
+
     public float moveSpeed;
 	public float intoxicationLevel;
 	public bool itemHeld = false;
@@ -16,7 +18,7 @@ public class Player : MonoBehaviour {
     public GameObject currentPlayer;
     private Animator currentAnimation;
     private float speedReducer;
-	private bool isBoost = false;
+	[HideInInspector] public bool isBoost = false;
 	private float boostMultiplier = 1.0f;
 	private int boostTimer;
 	public GameObject playerAttackTrigger;
@@ -27,8 +29,14 @@ public class Player : MonoBehaviour {
         speedReducer = 1.0f;
 		moveSpeed = 3.0f;
 		intoxicationLevel = 0.0f;
-		boostTimer = 90 * (int)(speedReducer * 1.8f);
+		boostTimer = 180 * (int)(speedReducer * 1.8f);
         currentAnimation = currentPlayer.GetComponent<PlayerSwitch>().currentAnimation;
+    }
+
+    private void Awake()
+    {
+        health.Initialize();
+        intoxication.Initialize();
     }
 
     // Update is called once per frame
@@ -41,14 +49,24 @@ public class Player : MonoBehaviour {
 
 		movePlayer ();
 		drainIntoxication (0.05f);
-        intoxicationSlider.value = intoxicationLevel;
+     
 
-	}
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            health.CurrentVal -= 10;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            health.CurrentVal += 10;
+        }
+    }
 
 
 	void drunkMovement() {
 
-		float factor = (100 - intoxicationLevel) / 100;
+		float factor = (100 - intoxication.CurrentVal) / 100;
 		moveSpeed = moveSpeed * factor;
 		Debug.Log (moveSpeed);
 
@@ -57,7 +75,7 @@ public class Player : MonoBehaviour {
 	void movePlayer() {
 
         ///drunkMovement ();
-        speedReducer = 1.0f - (intoxicationLevel / 100.0f);
+        speedReducer = 1.0f - (intoxication.CurrentVal / 100.0f);
 
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
@@ -110,45 +128,45 @@ public class Player : MonoBehaviour {
         if (isBoost) {
 			boostMultiplier = 2.0f;
 			boostTimer--;
-			Debug.Log (boostTimer);
+			//Debug.Log (boostTimer);
 		}
 
 		if (boostTimer <= 0) {
 			isBoost = false;
 			boostMultiplier = 1.0f;
-			boostTimer = 90 * (int)(speedReducer * 1.8f);
+			boostTimer = 180 * (int)(speedReducer * 1.8f);
 		}
 	}
 
 	void drainIntoxication(float factor) {
-		if (intoxicationLevel > 0) {
-			intoxicationLevel = intoxicationLevel - (1 * factor);
+		if (intoxication.CurrentVal > 0) {
+            intoxication.CurrentVal = intoxication.CurrentVal - (1 * factor);
 		//	Debug.Log ("Intoxication Level: " + intoxicationLevel);
 		} else {
-			intoxicationLevel = 0;
+            intoxication.CurrentVal = 0;
 		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.name == "Alcohol") {
 			Destroy (other.gameObject);
-			intoxicationLevel += 20;
+            intoxication.CurrentVal += 20;
 		}
 
         if (other.name == "POPO")
         {
             Destroy(other.gameObject);
-            intoxicationLevel += 20;
+            intoxication.CurrentVal += 20;
         }
 
 
         if (other.name == "Coffee") {
 			isBoost = true;
 			Destroy (other.gameObject);
-			if (intoxicationLevel >= 20) {
-				intoxicationLevel -= 20;
-			} else if (intoxicationLevel > 0 && intoxicationLevel < 20) {
-				intoxicationLevel = 0;
+			if (intoxication.CurrentVal >= 20) {
+                intoxication.CurrentVal -= 20;
+			} else if (intoxication.CurrentVal > 0 && intoxication.CurrentVal < 20) {
+                intoxication.CurrentVal = 0;
 			} else {
 				// if intoxication is already 0 then don't destroy the object
 				// tell the user that they are already have 0 intoxication
