@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour {
 	public Transform throwPoint;
 	public GameObject garbagePiece;
 	private float minDistance = 5.0f;
+	public bool isEnemy = false;
 
 	// Use this for initialization
 	void Start () {
@@ -21,12 +22,16 @@ public class Projectile : MonoBehaviour {
 	void Update () {
 		playerTransform = currentPlayer.GetComponent<PlayerSwitch>().currentTransform;
 
-
-		if (Vector2.Distance (transform.position, playerTransform.position) <= minDistance) {
-			if (Time.time > garbageInterval) {
-				garbageInterval = Time.time + throwRate;
-				Instantiate (garbagePiece, throwPoint.position, throwPoint.rotation);
+		if (isEnemy) {
+			if (Vector2.Distance (transform.position, playerTransform.position) <= minDistance) {
+				if (Time.time > garbageInterval) {
+					garbageInterval = Time.time + throwRate;
+					Instantiate (garbagePiece, throwPoint.position, throwPoint.rotation);
+				}
 			}
 		}
+
+
+
 	}
 }
