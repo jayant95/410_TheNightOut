@@ -6,6 +6,7 @@ public class Player : MonoBehaviour {
     [SerializeField]
     private Stat health;
 
+
 	[SerializeField] [HideInInspector]
     public Stat intoxication;
 
@@ -91,9 +92,30 @@ public class Player : MonoBehaviour {
 			playerAttackTrigger.transform.eulerAngles = new Vector2 (0, 0);
             currentAnimation.SetBool("Walk", true);
         }
+
+        else if (Input.GetAxisRaw("Vertical") < 0)
+        {
+            transform.position += Vector3.down * moveSpeed * speedReducer * boostMultiplier * Time.deltaTime;
+            transform.eulerAngles = new Vector2(0, 180);
+            playerAttackTrigger.transform.eulerAngles = new Vector2(0, 0);
+            currentAnimation.SetBool("WalkDown", true);
+        }
+
+        else if (Input.GetAxisRaw("Vertical") > 0)
+        {
+            transform.position += Vector3.up * moveSpeed * speedReducer * boostMultiplier * Time.deltaTime;
+            transform.eulerAngles = new Vector2(0, 180);
+            playerAttackTrigger.transform.eulerAngles = new Vector2(0, 0);
+            currentAnimation.SetBool("WalkUp", true);
+        }
+
+
+
         else
         {
             currentAnimation.SetBool("Walk", false);
+            currentAnimation.SetBool("WalkUp", false);
+            currentAnimation.SetBool("WalkDown", false);
         }
 
         /*
@@ -112,17 +134,23 @@ public class Player : MonoBehaviour {
 			//anim.SetBool ("WalkRight", false);
 		}
 
-    */
+   
 
 		if (Input.GetKey (KeyCode.UpArrow)) {
 			//drunkMovement ();
 			transform.position += Vector3.up * moveSpeed * speedReducer * boostMultiplier * Time.deltaTime;
-		}
+            currentAnimation.SetBool("WalkUp", true);
+            currentAnimation.SetBool("WalkDown", false);
+            currentAnimation.SetBool("Walk", false);
+        }
 		if (Input.GetKey (KeyCode.DownArrow)) {
 			//drunkMovement ();
 			transform.position += Vector3.down * moveSpeed * speedReducer * boostMultiplier * Time.deltaTime;
-		}
-
+            currentAnimation.SetBool("WalkDown", true);
+            currentAnimation.SetBool("WalkUp", false);
+            currentAnimation.SetBool("Walk", false);
+        }
+ */
 
 
         if (isBoost) {
