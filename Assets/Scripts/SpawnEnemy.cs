@@ -12,6 +12,7 @@ public class SpawnEnemy : MonoBehaviour {
     public GameObject hallucinationEnemy3;
 
     private float playerIntoxication;
+	private Stat intoxicationLevel;
 
     // Use this for initialization
     void Start () {
@@ -22,18 +23,19 @@ public class SpawnEnemy : MonoBehaviour {
 	void Update () {
         playerObject = currentPlayer.GetComponent<PlayerSwitch>().currentPlayer;
         playerIntoxication = playerObject.GetComponent<Player>().intoxicationLevel;
+		intoxicationLevel = playerObject.GetComponent<Player> ().intoxication;
 
-        if (playerIntoxication > 25.0f)
+		if (intoxicationLevel.CurrentVal > 25.0f)
         {
             hallucinationEnemy1.SetActive(true);
         }
 
-        if (playerIntoxication > 50.0f)
+		if (intoxicationLevel.CurrentVal > 50.0f)
         {
             hallucinationEnemy2.SetActive(true);
         }
 
-        if (playerIntoxication > 75.0f)
+		if (intoxicationLevel.CurrentVal > 75.0f)
         {
             hallucinationEnemy3.SetActive(true);
         }

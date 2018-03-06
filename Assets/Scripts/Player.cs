@@ -6,8 +6,8 @@ public class Player : MonoBehaviour {
     [SerializeField]
     private Stat health;
 
-    [SerializeField]
-    private Stat intoxication;
+	[SerializeField] [HideInInspector]
+    public Stat intoxication;
 
 
 
@@ -75,7 +75,7 @@ public class Player : MonoBehaviour {
 	void movePlayer() {
 
         ///drunkMovement ();
-        speedReducer = 1.0f - (intoxication.CurrentVal / 100.0f);
+        speedReducer = 1.0f - (intoxication.CurrentVal / 200.0f);
 
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
@@ -141,9 +141,11 @@ public class Player : MonoBehaviour {
 	void drainIntoxication(float factor) {
 		if (intoxication.CurrentVal > 0) {
             intoxication.CurrentVal = intoxication.CurrentVal - (1 * factor);
+			intoxicationLevel = (1 * factor);
 		//	Debug.Log ("Intoxication Level: " + intoxicationLevel);
 		} else {
             intoxication.CurrentVal = 0;
+			intoxicationLevel = 0;
 		}
 	}
 
@@ -151,6 +153,7 @@ public class Player : MonoBehaviour {
 		if (other.name == "Alcohol") {
 			Destroy (other.gameObject);
             intoxication.CurrentVal += 20;
+			intoxicationLevel += 20;
 		}
 
         if (other.name == "POPO")
@@ -165,8 +168,10 @@ public class Player : MonoBehaviour {
 			Destroy (other.gameObject);
 			if (intoxication.CurrentVal >= 20) {
                 intoxication.CurrentVal -= 20;
+				intoxicationLevel -= 20;
 			} else if (intoxication.CurrentVal > 0 && intoxication.CurrentVal < 20) {
                 intoxication.CurrentVal = 0;
+				intoxicationLevel = 0;
 			} else {
 				// if intoxication is already 0 then don't destroy the object
 				// tell the user that they are already have 0 intoxication
