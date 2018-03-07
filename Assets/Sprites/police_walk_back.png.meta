@@ -3,7 +3,13 @@ guid: c194f4e9beb393f4d946ef72feb67b92
 timeCreated: 1520370786
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: police_walk_back_0
+    21300002: police_walk_back_1
+    21300004: police_walk_back_2
+    21300006: police_walk_back_3
+    21300008: police_walk_back_4
+    21300010: police_walk_back_5
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -88,7 +94,91 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: police_walk_back_0
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 156
+        width: 917
+        height: 1255
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: police_walk_back_1
+      rect:
+        serializedVersion: 2
+        x: 1432
+        y: 156
+        width: 818
+        height: 1255
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: police_walk_back_2
+      rect:
+        serializedVersion: 2
+        x: 2515
+        y: 156
+        width: 824
+        height: 1255
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: police_walk_back_3
+      rect:
+        serializedVersion: 2
+        x: 3539
+        y: 242
+        width: 931
+        height: 1169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: police_walk_back_4
+      rect:
+        serializedVersion: 2
+        x: 4611
+        y: 174
+        width: 870
+        height: 1237
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: police_walk_back_5
+      rect:
+        serializedVersion: 2
+        x: 5705
+        y: 184
+        width: 869
+        height: 1244
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 

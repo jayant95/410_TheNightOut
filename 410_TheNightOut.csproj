@@ -294,6 +294,7 @@
     <Compile Include="Assets\Scripts\GUI\changeScene.cs" />
     <Compile Include="Assets\Scripts\GUI\Stat.cs" />
     <Compile Include="Assets\Scripts\Laser.cs" />
+    <Compile Include="Assets\Scripts\Patrol.cs" />
     <Compile Include="Assets\Scripts\Pickup.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PlayerAnimation.cs" />

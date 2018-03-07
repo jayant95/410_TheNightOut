@@ -47,7 +47,9 @@ public class Patrol : MonoBehaviour {
 				transform.localScale = new Vector2 (scale_x, scale_y);
 				moveRight = true;
 			}
-		} else {
+		}
+
+        else {
 			anim.SetBool ("Walking", false);
 		}
 
