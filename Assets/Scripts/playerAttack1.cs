@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class playerAttack1 : MonoBehaviour {
 
-    private bool attacking = false;
+    [HideInInspector] public bool attacking = false;
 
     private float attackTimer = 0;
     private float attackCd = 60.0f;
@@ -23,7 +23,7 @@ public class playerAttack1 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(Input.GetKeyDown("f") && !attacking)
+		if(Input.GetKeyDown(KeyCode.F) && !attacking)
         {
             attacking = true;
             attackTimer = attackCd;
@@ -43,7 +43,7 @@ public class playerAttack1 : MonoBehaviour {
                 attacking = false;
                 attackTrigger.enabled = false;
             }
-        }
+		}
 
         anim.SetBool("Attacking", attacking);
 

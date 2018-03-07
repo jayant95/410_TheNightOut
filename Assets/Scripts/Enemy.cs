@@ -17,7 +17,9 @@ public class Enemy : MonoBehaviour {
     void Start () {
         startTime = Time.time;
         color = this.GetComponent<SpriteRenderer>().color;
-        this.GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, 0);
+		if (isFromHallucination) {
+			this.GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, 0);
+		}
         curHealth = maxHealth;
     }
 

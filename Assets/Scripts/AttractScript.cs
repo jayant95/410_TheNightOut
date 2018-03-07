@@ -9,8 +9,9 @@ public class AttractScript : MonoBehaviour {
 	private GameObject playerObject;
     private float moveSpeed = 0.8f;
     private int maxDistance = 10;
-    private int minDistance = 5;
+    private int minDistance = 4;
 	public bool isFriendly = false;
+	[HideInInspector] public bool playerSeen = false;
 
 	private Vector2 velocity;
 
@@ -48,6 +49,7 @@ public class AttractScript : MonoBehaviour {
 
 		} else {
 			if (Vector2.Distance(transform.position, playerTransform.position) <= minDistance) {
+				playerSeen = true;
 				// transform.Translate(new Vector3(moveSpeed * Time.deltaTime, 0, 0));
 				transform.position = Vector2.Lerp (transform.position, playerObject.transform.position, Time.deltaTime * moveSpeed);
 				if (Vector2.Distance(transform.position, playerTransform.position) <= maxDistance) {

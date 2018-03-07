@@ -11,18 +11,15 @@ public class SpawnEnemy : MonoBehaviour {
     public GameObject hallucinationEnemy2;
     public GameObject hallucinationEnemy3;
 
-    private float playerIntoxication;
 	private Stat intoxicationLevel;
 
     // Use this for initialization
     void Start () {
-        playerIntoxication = 0;
     }
 	
 	// Update is called once per frame
 	void Update () {
         playerObject = currentPlayer.GetComponent<PlayerSwitch>().currentPlayer;
-        playerIntoxication = playerObject.GetComponent<Player>().intoxicationLevel;
 		intoxicationLevel = playerObject.GetComponent<Player> ().intoxication;
 
 		if (intoxicationLevel.CurrentVal > 25.0f)

@@ -50,8 +50,7 @@ public class Player : MonoBehaviour {
 
 		movePlayer ();
 		drainIntoxication (0.05f);
-     
-
+		increaseRange ();
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -96,7 +95,7 @@ public class Player : MonoBehaviour {
         else if (Input.GetAxisRaw("Vertical") < 0)
         {
             transform.position += Vector3.down * moveSpeed * speedReducer * boostMultiplier * Time.deltaTime;
-            transform.eulerAngles = new Vector2(0, 180);
+            //transform.eulerAngles = new Vector2(0, 180);
             playerAttackTrigger.transform.eulerAngles = new Vector2(0, 0);
             currentAnimation.SetBool("WalkDown", true);
         }
@@ -104,7 +103,7 @@ public class Player : MonoBehaviour {
         else if (Input.GetAxisRaw("Vertical") > 0)
         {
             transform.position += Vector3.up * moveSpeed * speedReducer * boostMultiplier * Time.deltaTime;
-            transform.eulerAngles = new Vector2(0, 180);
+           // transform.eulerAngles = new Vector2(0, 180);
             playerAttackTrigger.transform.eulerAngles = new Vector2(0, 0);
             currentAnimation.SetBool("WalkUp", true);
         }
@@ -165,6 +164,13 @@ public class Player : MonoBehaviour {
 			boostTimer = 180 * (int)(speedReducer * 1.8f);
 		}
 	}
+		
+
+	void increaseRange() {
+		float scale = ((intoxication.CurrentVal / 100.0f) * 2) + 1;
+		float y = playerAttackTrigger.GetComponent<BoxCollider2D> ().size.y;
+		playerAttackTrigger.GetComponent<BoxCollider2D> ().size = new Vector2 (scale * 3, y);
+	}
 
 	void drainIntoxication(float factor) {
 		if (intoxication.CurrentVal > 0) {
@@ -184,7 +190,7 @@ public class Player : MonoBehaviour {
 			intoxicationLevel += 20;
 		}
 
-        if (other.name == "POPO")
+		if (other.name == "POPO")
         {
             Destroy(other.gameObject);
             intoxication.CurrentVal += 20;
