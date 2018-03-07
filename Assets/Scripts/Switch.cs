@@ -21,7 +21,9 @@ public class Switch : MonoBehaviour {
 		if (other.tag == "Player") {
 			//if (Input.GetKey (KeyCode.Space)) {
 			rotatingLaserFirst.transform.Rotate (0, 0, (rotationSpeed/2) * Time.deltaTime);
-			rotatingLaserSecond.transform.Rotate (0, 0, (2* -rotationSpeed) * Time.deltaTime);
+			if (rotatingLaserSecond) {
+				rotatingLaserSecond.transform.Rotate (0, 0, (2* -rotationSpeed) * Time.deltaTime);
+			}
 
 			//}
 		}
