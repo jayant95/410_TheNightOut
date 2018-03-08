@@ -184,7 +184,7 @@ public class Player : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		if (other.name == "Alcohol") {
+		if (other.name == "Alcohol" || other.name == "Alcohol(Clone)") {
 			Destroy (other.gameObject);
             intoxication.CurrentVal += 20;
 			intoxicationLevel += 20;
@@ -197,7 +197,7 @@ public class Player : MonoBehaviour {
         }
 
 
-        if (other.name == "Coffee") {
+		if (other.name == "Coffee" || other.name == "Coffee(Clone)") {
 			isBoost = true;
 			Destroy (other.gameObject);
 			if (intoxication.CurrentVal >= 20) {

@@ -7,7 +7,6 @@ public class Transparency : MonoBehaviour {
 	public GameObject roof;
 	private Color color;
 	private bool inRange = false;
-	private float transparency = 1;
 	public float minimum = 0.0f;
 	public float maximum = 1f;
 	public float duration = 6.0f;

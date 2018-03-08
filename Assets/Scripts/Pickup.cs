@@ -47,6 +47,13 @@ public class Pickup : MonoBehaviour {
 	}
 
 	void pickupObject() {
+
+		if (!canPickup) {
+			transform.SetParent (null);
+			holding = false;
+			player.GetComponent<Player> ().itemHeld = holding;
+		}
+
 		if (Input.GetKeyDown (KeyCode.Space) && canPickup) {
 			//transform.position = gamePlayer.position;
 			transform.SetParent (gamePlayer);
@@ -91,6 +98,7 @@ public class Pickup : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.tag == "Player") {
 			canPickup = true;
+			//transform.SetParent (gamePlayer);
 			//player.GetComponent<Player> ().itemHeld = true;
 			//transform.position = player.transform.position;
 			//player.transform.SetParent (gamePlayer, false);
@@ -101,6 +109,8 @@ public class Pickup : MonoBehaviour {
 		if (other.tag == "Player") {
 			canPickup = false;
 			holding = false;
+			//transform.SetParent (null);
+
 			//player.GetComponent<Player> ().itemHeld = false;
 		}
 	}
