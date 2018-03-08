@@ -26,14 +26,19 @@ public class Transparency : MonoBehaviour {
 			fadeOut ();
 		}
 
-		if (roof.GetComponent<SpriteRenderer> ().color.a <= 0) {
-			Destroy (roof);
+		if (roof) {
+			if (roof.GetComponent<SpriteRenderer> ().color.a <= 0) {
+				Destroy (roof);
+			}
 		}
+
 	}
 
 	void fadeOut() {
-		float t = (Time.time - startTime) / duration;
-		roof.GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, Mathf.SmoothStep(maximum, minimum, t));
+		if (roof) {
+			float t = (Time.time - startTime) / duration;
+			roof.GetComponent<SpriteRenderer>().color = new Color(color.r, color.g, color.b, Mathf.SmoothStep(maximum, minimum, t));
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {

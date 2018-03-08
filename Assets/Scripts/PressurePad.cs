@@ -7,6 +7,8 @@ public class PressurePad : MonoBehaviour {
 	public GameObject player;
 	private bool check;
 	private bool onLaser = false;
+	public bool needKey = false;
+	public GameObject textPopup;
 
 	// Use this for initialization
 	void Start () {
@@ -28,7 +30,7 @@ public class PressurePad : MonoBehaviour {
 	}
 
 	void OnTriggerStay2D(Collider2D other) {
-		if (other.name == "Rock") {
+		if (other.name == "Rock" || other.name == "Key") {
 			onLaser = true;
 			if (!check) {
 
@@ -36,8 +38,20 @@ public class PressurePad : MonoBehaviour {
 			}
 		}
 
-		if (other.tag == "Player") {
+		if (other.tag == "Player" && !needKey) {
 			onLaser = true;
+		}
+
+		if (needKey) {
+			if (other.name == "Player" && other.name != "Key") {
+				// Show text
+				textPopup.SetActive(true);
+			}
+
+			if (other.name == "Key") {
+				// Don't show text
+				textPopup.SetActive(false);
+			}
 		}
 	}
 
@@ -48,7 +62,13 @@ public class PressurePad : MonoBehaviour {
 
 		if (other.name == "Rock") {
 			onLaser = false;
-		}	
+		}
+
+		if (needKey) {
+			if (other.name == "Player") {
+				textPopup.SetActive (false);
+			}
+		}
 
 	}
 }

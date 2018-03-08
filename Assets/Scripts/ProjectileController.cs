@@ -5,11 +5,13 @@ using UnityEngine;
 public class ProjectileController : MonoBehaviour {
 
 	private int lifeTimer = 0;
+	private GameObject playerObject;
+	public GameObject currentPlayer;
 
 	// Use this for initialization
 	void Start () {
 		this.gameObject.GetComponent<Rigidbody2D> ().velocity = new Vector2 (Random.Range(-5.0f, 5.0f), Random.Range(2.0f, 2.0f));
-
+		playerObject = currentPlayer.GetComponent<PlayerSwitch>().currentPlayer;
 	}
 	
 	// Update is called once per frame
@@ -31,6 +33,7 @@ public class ProjectileController : MonoBehaviour {
 		if (other.tag == "Player") {
 			Destroy (gameObject, 1);
 			Debug.Log ("Hit Player!");
+			playerObject.GetComponent<Player> ().health.CurrentVal -= 5;
 			// Decrease player health
 		}
 

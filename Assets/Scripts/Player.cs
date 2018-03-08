@@ -3,8 +3,8 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
-    [SerializeField]
-    private Stat health;
+	[SerializeField] [HideInInspector]
+    public Stat health;
 
 
 	[SerializeField] [HideInInspector]
