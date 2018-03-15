@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Grabber.cs" />
      <Compile Include="Assets\Scripts\attackTrigger.cs" />
      <Compile Include="Assets\Scripts\AttractScript.cs" />
      <Compile Include="Assets\Scripts\Bootleg Bar\Cursor_Custom.cs" />

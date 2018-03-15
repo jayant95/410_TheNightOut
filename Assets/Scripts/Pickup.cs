@@ -96,7 +96,7 @@ public class Pickup : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		if (other.tag == "Player") {
+		if (other.name == "PlayerPickup") {
 			canPickup = true;
 			//transform.SetParent (gamePlayer);
 			//player.GetComponent<Player> ().itemHeld = true;
@@ -106,7 +106,7 @@ public class Pickup : MonoBehaviour {
 	}
 
 	void OnTriggerExit2D(Collider2D other) {
-		if (other.tag == "Player") {
+		if (other.name == "PlayerPickup") {
 			canPickup = false;
 			holding = false;
 			//transform.SetParent (null);
