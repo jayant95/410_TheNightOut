@@ -12,6 +12,9 @@ public class AttractScript : MonoBehaviour {
     private int minDistance = 4;
 	public bool isFriendly = false;
 	[HideInInspector] public bool playerSeen = false;
+	private Animator anim;
+	private float scale_x;
+	private float scale_y;
 
 	private Vector2 velocity;
 
@@ -23,6 +26,9 @@ public class AttractScript : MonoBehaviour {
 	void Start () {
         //playerTransform = currentPlayer.GetComponent<PlayerSwitch>().currentTransform;
 		//playerObject = currentPlayer.GetComponent<PlayerSwitch> ().currentPlayer;
+		anim = gameObject.GetComponent<Animator> ();
+		scale_x = transform.localScale.x;
+		scale_y = transform.localScale.y;
     }
 
     // Update is called once per frame
@@ -42,17 +48,35 @@ public class AttractScript : MonoBehaviour {
 		if (isFriendly) {
 			float posX = Mathf.SmoothDamp (transform.position.x, currentPlayer.GetComponent<PlayerSwitch> ().currentPlayer.transform.position.x, ref velocity.x, smoothingTimer_x);
 			float posY = Mathf.SmoothDamp (transform.position.y, currentPlayer.GetComponent<PlayerSwitch> ().currentPlayer.transform.position.y, ref velocity.y, smoothingTimer_y);
-			if (Vector2.Distance(transform.position, playerTransform.position) >= minDistance) {
+			if (Vector2.Distance (transform.position, playerTransform.position) >= minDistance) {
 				//transform.position = Vector2.Lerp (transform.position, playerObject.transform.position, Time.deltaTime * moveSpeed);
 				transform.position = new Vector3 (posX, posY, transform.position.z);
+				anim.SetBool ("Walk", true);
+
+				if (transform.position.x > playerObject.transform.position.x) {
+					transform.localScale = new Vector2 (-scale_x, scale_y);
+				} else {
+					transform.localScale = new Vector2 (scale_x, scale_y);
+				}
+			} else {
+				anim.SetBool ("Walk", false);
 			}
 
 		} else {
-			if (Vector2.Distance(transform.position, playerTransform.position) <= minDistance) {
+			if (Vector2.Distance (transform.position, playerTransform.position) <= minDistance) {
 				playerSeen = true;
 				// transform.Translate(new Vector3(moveSpeed * Time.deltaTime, 0, 0));
 				transform.position = Vector2.Lerp (transform.position, playerObject.transform.position, Time.deltaTime * moveSpeed);
-				if (Vector2.Distance(transform.position, playerTransform.position) <= maxDistance) {
+				if (!anim.GetBool ("Attacking")) {
+					anim.SetBool ("Walking", true);
+				}
+				if (transform.position.x > playerObject.transform.position.x) {
+					transform.localScale = new Vector2 (scale_x, scale_y);
+				} else {
+					transform.localScale = new Vector2 (scale_x, scale_y);
+				}
+
+				if (Vector2.Distance (transform.position, playerTransform.position) <= maxDistance) {
 					// call any functon, shoot or anything
 				}
 			}

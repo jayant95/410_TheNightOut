@@ -17,6 +17,7 @@ public class attackTrigger : MonoBehaviour {
 		}
 		*/
       
+		/*
         if (collision.isTrigger != true && collision.CompareTag("Enemy"))
         {
             collision.SendMessageUpwards("Damage", damage);
@@ -35,6 +36,7 @@ public class attackTrigger : MonoBehaviour {
             collision.SendMessageUpwards("Damage", damage);
             Debug.Log("damage", gameObject);
         }
+		*/
 
     }
 }

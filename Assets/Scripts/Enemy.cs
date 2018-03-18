@@ -72,6 +72,7 @@ public class Enemy : MonoBehaviour {
 	void attackPlayer() {
 		if (Vector2.Distance (transform.position, playerTransform.position) <= 1.5f) {
 			anim.SetBool ("Attacking", true);
+			anim.SetBool ("Walking", false);
 			colliderBox.enabled = true;
 			player.GetComponent<Player> ().health.CurrentVal -= 0.2f;
 		} else {
