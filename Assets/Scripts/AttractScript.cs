@@ -45,7 +45,13 @@ public class AttractScript : MonoBehaviour {
 		//transform.rotation = Quaternion.Euler (0, 0, arcTan * Mathf.Rad2Deg);
 		//transform.rotation = Quaternion.Lerp (transform.rotation, Quaternion.Euler (0, 0, (arcTan * Mathf.Rad2Deg) - 90.0f), Time.deltaTime * 0.8f);
 
-		if (isFriendly) {
+		bool check = true;
+		if (currentPlayer.GetComponent<AttractScript> () != null) {
+			check = currentPlayer.GetComponent<AttractScript> ().enabled;
+		}
+
+
+		if (isFriendly && check) {
 			float posX = Mathf.SmoothDamp (transform.position.x, currentPlayer.GetComponent<PlayerSwitch> ().currentPlayer.transform.position.x, ref velocity.x, smoothingTimer_x);
 			float posY = Mathf.SmoothDamp (transform.position.y, currentPlayer.GetComponent<PlayerSwitch> ().currentPlayer.transform.position.y, ref velocity.y, smoothingTimer_y);
 			if (Vector2.Distance (transform.position, playerTransform.position) >= minDistance) {
@@ -54,9 +60,17 @@ public class AttractScript : MonoBehaviour {
 				anim.SetBool ("Walk", true);
 
 				if (transform.position.x > playerObject.transform.position.x) {
-					transform.localScale = new Vector2 (-scale_x, scale_y);
+					if (playerObject.name == "Player") {
+						transform.localScale = new Vector2 (-scale_x, scale_y);
+					} else {
+						transform.localScale = new Vector2 (-scale_x, scale_y);
+					}
 				} else {
-					transform.localScale = new Vector2 (scale_x, scale_y);
+					if (playerObject.name == "Player") {
+						transform.localScale = new Vector2 (scale_x, scale_y);
+					} else {
+						transform.localScale = new Vector2 (scale_x, scale_y);
+					}
 				}
 			} else {
 				anim.SetBool ("Walk", false);

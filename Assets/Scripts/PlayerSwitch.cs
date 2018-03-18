@@ -40,6 +40,8 @@ public class PlayerSwitch : MonoBehaviour {
 		if (player1Active) {
 			GameObject.Find ("Player").GetComponent<Player> ().enabled = true;
 			GameObject.Find ("Player2").GetComponent<Player> ().enabled = false;
+			GameObject.Find ("Player").GetComponent<AttractScript> ().enabled = false;
+			GameObject.Find ("Player2").GetComponent<AttractScript> ().enabled = true;
 			currentPlayer = player1;
 			currentTransform = player1Trans;
             currentAnimation = player1Anim;
@@ -48,6 +50,8 @@ public class PlayerSwitch : MonoBehaviour {
 		if (player2Active) {
 			GameObject.Find ("Player").GetComponent<Player> ().enabled = false;
 			GameObject.Find ("Player2").GetComponent<Player> ().enabled = true;
+			GameObject.Find ("Player").GetComponent<AttractScript> ().enabled = true;
+			GameObject.Find ("Player2").GetComponent<AttractScript> ().enabled = false;
 			currentPlayer = player2;
 			currentTransform = player2Trans;
             currentAnimation = player2Anim;

@@ -23,7 +23,8 @@ public class Player : MonoBehaviour {
 	private float boostMultiplier = 1.0f;
 	private int boostTimer;
 	public GameObject playerAttackTrigger;
-
+	private float scale_x;
+	private float scale_y;
 
 	// Use this for initialization
 	void Start () {
@@ -32,6 +33,8 @@ public class Player : MonoBehaviour {
 		intoxicationLevel = 0.0f;
 		boostTimer = 180 * (int)(speedReducer * 1.8f);
         currentAnimation = currentPlayer.GetComponent<PlayerSwitch>().currentAnimation;
+		scale_x = transform.localScale.x;
+		scale_y = transform.localScale.y;
     }
 
     private void Awake()
@@ -80,15 +83,28 @@ public class Player : MonoBehaviour {
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
 			transform.position += Vector3.right * moveSpeed * speedReducer * boostMultiplier * Time.deltaTime;
-            transform.eulerAngles = new Vector2(0, 0);
-			playerAttackTrigger.transform.eulerAngles = new Vector2 (0, 180);
+            //transform.eulerAngles = new Vector2(0, 180);
+			if (gameObject.name == "Player") {
+				transform.localScale = new Vector2 (scale_x, scale_y);
+				playerAttackTrigger.transform.eulerAngles = new Vector2 (0, 180);
+
+			} else {
+				transform.localScale = new Vector2 (-scale_x, scale_y);
+			}
             currentAnimation.SetBool("Walk", true);
         }
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
 			transform.position += Vector3.left * moveSpeed * speedReducer * boostMultiplier * Time.deltaTime;
-            transform.eulerAngles = new Vector2(0, 180);
-			playerAttackTrigger.transform.eulerAngles = new Vector2 (0, 0);
+            //transform.eulerAngles = new Vector2(0, 0);
+			if (gameObject.name == "Player") {
+				transform.localScale = new Vector2 (-scale_x, scale_y);
+				//playerAttackTrigger.transform.eulerAngles = new Vector2 (0, 0);
+			} else {
+				transform.localScale = new Vector2 (scale_x, scale_y);
+				playerAttackTrigger.transform.eulerAngles = new Vector2 (0, 180);
+
+			}
             currentAnimation.SetBool("Walk", true);
         }
 
