@@ -11,7 +11,6 @@ public class Player : MonoBehaviour {
     public Stat intoxication;
 
 
-
     public float moveSpeed;
 	public float intoxicationLevel;
 	public bool itemHeld = false;
@@ -50,7 +49,7 @@ public class Player : MonoBehaviour {
 		if (gameObject.GetComponent<Rigidbody2D> ().IsSleeping()) {
 			gameObject.GetComponent<Rigidbody2D> ().WakeUp ();
 		}
-
+			
 		movePlayer ();
 		drainIntoxication (0.05f);
 		increaseRange ();
@@ -208,7 +207,8 @@ public class Player : MonoBehaviour {
 
 		if (other.name == "POPO")
         {
-            Destroy(other.gameObject);
+			//other.GetComponent<Enemy> ().health.CurrentVal -= 1;
+           // Destroy(other.gameObject);
             intoxication.CurrentVal += 20;
         }
 
