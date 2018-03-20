@@ -29,13 +29,14 @@ public class AttractScript : MonoBehaviour {
 		anim = gameObject.GetComponent<Animator> ();
 		scale_x = transform.localScale.x;
 		scale_y = transform.localScale.y;
+		playerTransform = currentPlayer.GetComponent<PlayerSwitch>().currentTransform;
+		playerObject = currentPlayer.GetComponent<PlayerSwitch> ().currentPlayer;
+
     }
 
     // Update is called once per frame
     void Update () {
-        playerTransform = currentPlayer.GetComponent<PlayerSwitch>().currentTransform;
-		playerObject = currentPlayer.GetComponent<PlayerSwitch> ().currentPlayer;
-
+   
 
        // transform.LookAt(playerTransform.position);
        // transform.Rotate(new Vector3(0, -90, 0), Space.Self);

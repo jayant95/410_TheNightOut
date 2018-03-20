@@ -9,6 +9,10 @@ public class attackTrigger : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+		if (collision.gameObject.tag == "Enemy") {
+			collision.GetComponent<Enemy> ().curHealth -= damage;
+
+		}
 		/*
 		if (Input.GetAxisRaw ("Horizontal") > 0) {
 			transform.eulerAngles = new Vector2(0, 0);
