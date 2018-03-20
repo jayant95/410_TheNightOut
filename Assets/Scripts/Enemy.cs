@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour {
+	[SerializeField] [HideInInspector]
+	public Stat health;
+
+	[SerializeField]
+	private CanvasGroup healthGroup;
 
     private Color color;
     public int maxHealth = 100;
@@ -32,6 +37,10 @@ public class Enemy : MonoBehaviour {
 		}
     }
 
+	private void awake() {
+		health.Initialize();
+	}
+
     // Update is called once per frame
     void Update () {
 		if (canAttack) {
@@ -55,6 +64,14 @@ public class Enemy : MonoBehaviour {
 		if (canAttack) {
 			transformEnemy ();
 			attackPlayer ();
+		}
+
+		//Debug.Log (health.CurrentVal);
+
+		if (Input.GetKeyDown(KeyCode.Q))
+		{
+			health.CurrentVal -= 10;
+			Debug.Log ("decreasing");
 		}
     }
 
