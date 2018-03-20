@@ -20,6 +20,10 @@ public class PlayerSwitch : MonoBehaviour {
 	void Start () {
 		player1Active = true;
 		currentPlayer = player1;
+		player1Anim = player1.GetComponent<Animator> ();
+		player1Trans = player1.transform;
+		player2Anim = player2.GetComponent<Animator> ();
+		player2Trans = player2.transform;
         currentAnimation = player1Anim;
         currentTransform = player1Trans;
 	}

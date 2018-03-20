@@ -72,5 +72,6 @@ public class PlayerHealth : MonoBehaviour
         playerAudio.clip = deathClip;
         playerAudio.Play();
         playerAnim.enabled = false;
+		Application.Quit();
     }
 }

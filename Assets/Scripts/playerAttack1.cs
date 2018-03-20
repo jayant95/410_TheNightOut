@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class playerAttack1 : MonoBehaviour {
 
+    public AudioClip punchWhoosh;
+    private AudioSource source;
+    private float volLowRange = 0.5f;
+    private float volHighRange = 1.0f;
+
     [HideInInspector] public bool attacking = false;
 
     private float attackTimer = 0;
-    private float attackCd = 60.0f;
+    private float attackCd = 30.0f;
 
     public Collider2D attackTrigger;
 
@@ -15,6 +20,7 @@ public class playerAttack1 : MonoBehaviour {
 
    void Awake()
     {
+        source = gameObject.GetComponent<AudioSource>();
        anim = gameObject.GetComponent<Animator>();
         attackTrigger.enabled = false;
     }
@@ -25,9 +31,12 @@ public class playerAttack1 : MonoBehaviour {
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.F) && !attacking)
         {
+
+            float vol = Random.Range(volLowRange, volHighRange);
             attacking = true;
             attackTimer = attackCd;
-
+            source.PlayOneShot(punchWhoosh, vol);
+            Debug.Log("salkdjaskldj");
             attackTrigger.enabled = true;
         }
 
@@ -47,5 +56,5 @@ public class playerAttack1 : MonoBehaviour {
 
         anim.SetBool("Attacking", attacking);
 
-	}
+    }
 }
