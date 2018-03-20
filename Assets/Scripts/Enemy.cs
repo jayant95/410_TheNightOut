@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		if (canAttack) {
+		if (canAttack) { 
 			playerTransform = currentPlayer.GetComponent<PlayerSwitch>().currentTransform;
 			player = currentPlayer.GetComponent<PlayerSwitch> ().currentPlayer;
 		}
