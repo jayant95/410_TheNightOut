@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour {
-	[SerializeField] [HideInInspector]
+
+    public AudioClip hit;
+    private AudioSource source;
+    private float volLowRange = 0.1f;
+    private float volHighRange = 0.4f;
+    [SerializeField] [HideInInspector]
 	public Stat health;
 
 	[SerializeField]
@@ -39,7 +44,8 @@ public class Enemy : MonoBehaviour {
 
 	private void awake() {
 		health.Initialize();
-	}
+        source = gameObject.GetComponent<AudioSource>();
+    }
 
     // Update is called once per frame
     void Update () {
@@ -106,7 +112,13 @@ public class Enemy : MonoBehaviour {
 
     public void Damage(int damage)
     {
+        float vol = Random.Range(volLowRange, volHighRange);
+        if (!source.isPlaying)
+        {
+            source.PlayOneShot(hit, vol);
+        }
         curHealth -= damage;
         Debug.Log("damage");
+
     }
 }
